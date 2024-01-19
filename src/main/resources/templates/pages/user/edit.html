@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"       
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	layout:decorate="~{layouts/layout}">
+    <head>
+        <title>update data</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container-xxl flex-grow-1 container-p-y" layout:fragment="content">
+          <h1>Formulaire d'édition</h1>
+            <form class="row g-3 needs-validation" th:action="@{/pages/edit/{user_id}(user_id=${user.user_id})}" method="post">
+                <div class="col-md-4">
+                    <label for="validationCustomUsername" class="form-label">Username</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input type="text" name="username" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" th:value="${user.username}" required>
+                      <div class="invalid-feedback">
+                        Please choose a username.
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationCustom01" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="validationCustom01"  th:value="${user.password}" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-check">
+                      <input name="enable" class="form-check-input" type="checkbox"  id="invalidCheck" th:value="${user.enable}" required>
+                      <label class="form-check-label" for="invalidCheck">
+                        Enable
+                      </label>
+                      <div class="invalid-feedback">
+                        actif
+                      </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">nom</label>
+                    <input type="text" name="nom" class="form-control" id="validationCustom02"  th:value="${user.nom}" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="validationCustom02" class="form-label">Prenom</label>
+                  <input type="text" name="prenom" class="form-control" id="validationCustom02" th:value="${user.prenom}" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+
+               
+
+
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">email</label>
+                    <input type="email" name="email" class="form-control" id="validationCustom02"  th:value="${user.email}" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">telephone</label>
+                    <input type="text" name="telephone" class="form-control" id="validationCustom02"  th:value="${user.telephone}" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                </div>
+                
+                <h3>roles</h3>
+                <div class="form-group d-flex p-2" th:each="role : ${roles}">
+                    <label th:for="${'role_' + role.role_id}" th:text="${role.name}"></label>
+                    <input type="checkbox" class="form-check-input" th:id="${'role_' + role.role_id}" th:name="roles" th:value="${role.role_id}" th:checked="${user.roles != null and user.roles.contains(role)}">
+                </div>
+                
+                
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

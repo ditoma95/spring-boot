@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"       
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	layout:decorate="~{layouts/layout}">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container-xxl flex-grow-1 container-p-y" layout:fragment="content">
+
+            <li class="menu-item mb-8">
+                <a th:href="@{/pages/create}" class="menu-link">
+                  <div data-i18n="Vertical Form">create users</div>
+                </a>
+              </li>
+            <h1>Listes d'utilisateurs</h1>
+            <table class="table mb-2">
+                <thead>
+                    <tr>
+                        <th scope="col">username</th>
+                        <th scope="col">password</th>
+                        <th scope="col">Enable</th>
+                        <th scope="col">nom</th>
+                        <th scope="col">prenom</th>
+                        <th scope="col">email</th>
+                        <th scope="col">telephone</th>
+                        <th scope="col">role</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Update</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="use : ${users}">
+                        <td th:text="${use.username}"></td>
+                        <td th:text="${use.password}"></td>
+                        <td>
+                            <span th:if="${use.enable==true}">
+                                <span class="badge bg-label-success me-1">Actif</span>
+                            </span>
+                            <span th:if="${use.enable==null}">
+                                <span class="badge bg-label-danger me-1">Inactif</span>
+                            </span>
+                        </td>
+                        <td th:text="${use.nom}"></td>
+                        <td th:text="${use.prenom}"></td>
+                        <td th:text="${use.email}"></td>
+                        <td th:text="${use.telephone}"></td>
+                        <td>
+                            <span th:each="rol : ${use.roles}" th:if="${rol != null}">
+                                <div>
+                                    <p class="fw-normal mb-1"><span th:text="${rol.name}"></span></p>
+                                </div>
+                            </span>
+                            <div th:if="${use.roles == null or use.roles.size() == 0}">
+                                <p>Pas de role</p>
+                            </div>
+                         </td>
+
+                        <td><a th:href="@{/pages/delete/{id}(id=${use.user_id})}">Delete</a></td>
+                        <td><a th:href="@{/pages/edit/{id}(id=${use.user_id})}">Update</a></td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"       
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	layout:decorate="~{layouts/layout}">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+
+        <div class="container-xxl flex-grow-1 container-p-y" layout:fragment="content">
+
+            <div th:if="${message}">
+              <p id="recupidm" th:data-role="${message}"></p>
+            </div>
+
+          <h1>Page de creation d'un rôle</h1>
+          <form class="row g-3 needs-validation" th:action="@{/roles/create}" method="post">
+                <div class="col-md-4">
+                    <label for="validationCustomUsername" class="form-label">Username</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input type="text" name="name" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                      <div class="invalid-feedback">
+                        Please choose a username.
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+
+
+    </body>
+</html>
