@@ -45,7 +45,7 @@ public class User implements Serializable {
     private String username;
     
     @Basic
-    @Column(name = "password", length = 50)
+    @Column(name = "password", length = 500)
     private String password;
     
     @Basic

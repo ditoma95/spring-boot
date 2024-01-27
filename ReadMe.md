@@ -19,7 +19,7 @@ INTEGRATION DE SWEET ALERT 2 DANS SPRING-BOOT
             model.addAttribute("message", role.getName());
             return "pages/role/create";
         }
-      
+    
         System.out.println(recupNom.getName());
         return "redirect:/roles";
     }
@@ -67,8 +67,10 @@ _data-[nom, prenom etc] : renvoyer l'attribut voulue
 </script>
 ```
 
-Pour démarrager le serveur
+* [ ]  Pour démarrager le serveur
 
 ```java
 mvn spring-boot:run
 ```
+
+insert into users(email, enable, nom, password, prenom, telephone, username) values ('admin@gmail.com', true,'tamara', '$2a$10$b14yVKJs6PHf0oSuDX6JMe0us/m5XHCC0JCWGgoBQRNngeM2FTf7e', 'tamara', '6645654654', 'tamara')
